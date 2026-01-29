@@ -4,8 +4,19 @@ import random
 from fastapi import FastAPI, HTTPException, Response, Depends
 from typing import Any, Annotated
 
-from sqlalchemy import create_engine
-from sqlmodel import SQLModel, Session
+from sqlalchemy import create_engine, select
+from sqlmodel import SQLModel, Session, Field
+
+
+class Campaign(SQLModel, table=True):
+    campaign_id: int | None = Field(default=None, primary_key=True)
+    name: str = Field(sa_column_kwargs={"unique": True})
+    due_date: datetime.datetime | None = Field(default=None, index=True)
+    created_at: datetime.datetime = Field(
+        default_factory=lambda: datetime.datetime.now(datetime.timezone.utc),
+        nullable=True,
+        index=True,
+    )
 
 sqlite_file_db = "database.db"
 sqlite_url = f"sqlite:///{sqlite_file_db}"
@@ -24,6 +35,13 @@ SessionDep = Annotated[Session, Depends(get_session)]
 
 async def lifespan(app: FastAPI):
     create_db_and_tables()
+    with Session(engine) as session:
+        if not session.exec(select(Campaign)).first():
+            session.add_all([
+                Campaign(name="Summer Launch", due_date=datetime.datetime.now()),
+                Campaign(name="Black Friday", due_date=datetime.datetime.now())
+            ])
+            session.commit()
     yield
     engine.dispose()
 app = FastAPI(root_path="/api/v1", lifespan=lifespan)
