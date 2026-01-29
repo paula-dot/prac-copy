@@ -1,10 +1,32 @@
 import datetime
 import random
 
-from fastapi import FastAPI, HTTPException, Response
-from typing import Any
+from fastapi import FastAPI, HTTPException, Response, Depends
+from typing import Any, Annotated
 
-app = FastAPI(root_path="/api/v1")
+from sqlalchemy import create_engine
+from sqlmodel import SQLModel, Session
+
+sqlite_file_db = "database.db"
+sqlite_url = f"sqlite:///{sqlite_file_db}"
+
+connect_args = {"check_same_thread": False}
+engine = create_engine(sqlite_url, connect_args=connect_args)
+
+def create_db_and_tables():
+    SQLModel.metadata.create_all(engine)
+
+def get_session():
+    with Session(engine) as session:
+        yield session
+
+SessionDep = Annotated[Session, Depends(get_session)]
+
+async def lifespan(app: FastAPI):
+    create_db_and_tables()
+    yield
+    engine.dispose()
+app = FastAPI(root_path="/api/v1", lifespan=lifespan)
 
 @app.get("/")
 async def root():

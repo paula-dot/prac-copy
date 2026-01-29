@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5113642d-f418-4f35-b6ea-cbb107db9ea9" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="5113642d-f418-4f35-b6ea-cbb107db9ea9" name="Changes" comment="Add campaign management endpoints to FastAPI application">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,12 +89,25 @@
       <updated>1769013278824</updated>
       <workItem from="1769013284962" duration="89000" />
       <workItem from="1769697269636" duration="861000" />
-      <workItem from="1769698694067" duration="4644000" />
+      <workItem from="1769698694067" duration="5616000" />
     </task>
+    <task id="LOCAL-00001" summary="Add campaign management endpoints to FastAPI application">
+      <option name="closed" value="true" />
+      <created>1769705078506</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1769705078506</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Add campaign management endpoints to FastAPI application" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add campaign management endpoints to FastAPI application" />
   </component>
   <component name="github-copilot-workspace">
     <instructionFileLocations>
